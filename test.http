@@ -63,3 +63,42 @@ Accept: application/json
 ### Produit inexistant (attendu : 404)
 GET {{baseUrl}}/products/9999
 Accept: application/json
+
+
+### Commander (connecté) : variante 2 x2 et variante 4 x1
+POST {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "items": [
+    { "variant_id": 2, "quantity": 2 },
+    { "variant_id": 4, "quantity": 1 }
+  ]
+}
+
+### Mes commandes
+GET {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Commande en rupture de stock (la variante Prune a un stock de 0, attendu : 422)
+POST {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "items": [
+    { "variant_id": 2, "quantity": 1 },
+    { "variant_id": 3, "quantity": 1 }
+  ]
+}
+
+### Sans jeton (attendu : 401)
+POST {{baseUrl}}/orders
+Content-Type: application/json
+Accept: application/json
+
+{ "items": [{ "variant_id": 2, "quantity": 1 }] }
