@@ -7,8 +7,8 @@ Accept: application/json
 
 {
   "name": "Aminata Test",
-  "email": "aminata@test.com",
-  "phone": "70000001",
+  "email": "aminata2@test.com",
+  "phone": "70000002",
   "password": "motdepasse1",
   "password_confirmation": "motdepasse1"
 }
@@ -20,7 +20,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "login": "aminata@test.com",
+  "login": "70000002",
   "password": "motdepasse1"
 }
 
