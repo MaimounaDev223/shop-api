@@ -34,3 +34,32 @@ Accept: application/json
 POST {{baseUrl}}/logout
 Authorization: Bearer {{token}}
 Accept: application/json
+
+
+### Catégories
+GET {{baseUrl}}/categories
+Accept: application/json
+
+### Tous les produits
+GET {{baseUrl}}/products
+Accept: application/json
+
+### Produits d'une catégorie (sous-catégorie)
+GET {{baseUrl}}/products?category=levres
+Accept: application/json
+
+### Produits d'une catégorie (parent, inclut les sous-catégories)
+GET {{baseUrl}}/products?category=maquillage
+Accept: application/json
+
+### Recherche
+GET {{baseUrl}}/products?search=ROUGE
+Accept: application/json
+
+### Détail d'un produit
+GET {{baseUrl}}/products/1
+Accept: application/json
+
+### Produit inexistant (attendu : 404)
+GET {{baseUrl}}/products/9999
+Accept: application/json
