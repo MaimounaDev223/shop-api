@@ -102,3 +102,16 @@ Content-Type: application/json
 Accept: application/json
 
 { "items": [{ "variant_id": 2, "quantity": 1 }] }
+
+### Test rupture de stock (attendu : 422)
+POST {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "items": [
+    { "variant_id": 2, "quantity": 1 },
+    { "variant_id": 4, "quantity": 1 }
+  ]
+}
