@@ -115,3 +115,73 @@ Accept: application/json
     { "variant_id": 4, "quantity": 1 }
   ]
 }
+
+### Payer : refusé (numéro finissant par 0) -> 402
+POST {{baseUrl}}/orders/2/pay
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{ "operator": "orange", "phone": "70000000" }
+
+### Payer : accepté -> 200
+POST {{baseUrl}}/orders/2/pay
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{ "operator": "orange", "phone": "70000001" }
+
+### Payer une deuxième fois -> 409
+POST {{baseUrl}}/orders/2/pay
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{ "operator": "moov", "phone": "70000001" }
+
+### Mauvais opérateur -> 422
+POST {{baseUrl}}/orders/1/pay
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{ "operator": "paypal", "phone": "70000001" }
+
+### A. Nouvelle commande
+# @name newOrder
+POST {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "items": [
+    { "variant_id": 2, "quantity": 1 }
+  ]
+}
+
+### B. Payer avec un numéro qui finit par 0 (refusé)
+@orderId = {{newOrder.response.body.id}}
+POST {{baseUrl}}/orders/{{orderId}}/pay
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{ "operator": "orange", "phone": "70000000" }
+
+### C. Payer avec un numéro qui ne finit pas par 0 (accepté)
+POST {{baseUrl}}/orders/{{orderId}}/pay
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{ "operator": "orange", "phone": "70000001" }
+
+### D. Payer encore une fois (bloqué)
+POST {{baseUrl}}/orders/{{orderId}}/pay
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{ "operator": "orange", "phone": "70000001" }
