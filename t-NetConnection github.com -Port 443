@@ -1,0 +1,12 @@
+[33mc674294[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Add simulated mobile money payment
+[33mf526fd5[m[33m ([m[1;31morigin/main[m[33m)[m Add orders API with transactional stock decrement
+[33m087c417[m Add orders API with transactional stock decrement
+[33m8e0ac95[m Add catalog API: categories and products
+[33mef0ae7a[m Add catalog API: categories and products
+[33m00b364f[m Add API authentication with Sanctum
+[33md9e491f[m Add shop tables and model relations
+[33m7430797[m Add shop tables: categories, products, variants
+[33m963f7e0[m Install Filament admin panel
+[33m3ef4970[m Install Sanctum
+[33m915610c[m Install Sanctum
+[33mf3c4b3c[m Initial Laravel 13 project
